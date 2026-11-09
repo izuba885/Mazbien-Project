@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inaaya Zubaria | Data Science</title>
+  <meta name="description" content="Portfolio of Inaaya Zubaria, a Data Science student. Coursework, projects, and contact.">
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-mid: #14325a;
+      --ink: #142033;
+      --muted: #3d4d63;
+      --line: #d5deea;
+      --paper: #f4f7fb;
+      --white: #ffffff;
+      --header: 4.25rem;
+      --wrap: 68rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      overflow-wrap: break-word;
+    }
+
+    img, svg { max-width: 100%; }
+
+    a { color: inherit; }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.5rem 0.8rem;
+      z-index: 30;
+    }
+
+    .skip:focus { top: 0.5rem; }
+
+    .wrap {
+      width: min(var(--wrap), calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: var(--header);
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      height: 100%;
+      width: min(var(--wrap), calc(100% - 2.5rem));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      border-bottom-color: var(--navy);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      background: var(--white);
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.28rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle-bar {
+      display: block;
+      width: 1.1rem;
+      height: 2px;
+      background: var(--navy);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08), transparent 28%),
+        linear-gradient(160deg, #0b1f3a 0%, #16345c 58%, #0b1f3a 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 26rem;
+      height: 26rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      right: -7rem;
+      top: -9rem;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.8fr);
+      gap: 3rem;
+      align-items: end;
+      padding: 5.5rem 0 4.5rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+    }
+
+    .hero .eyebrow { color: rgba(255, 255, 255, 0.78); }
+
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -0.03em; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      font-weight: 700;
+    }
+
+    .lede {
+      max-width: 38rem;
+      margin: 1.25rem 0 0;
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.75rem;
+      background: var(--white);
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.9rem 1.25rem;
+      border-radius: 0.55rem;
+      border: 2px solid var(--white);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: transparent;
+      color: var(--white);
+    }
+
+    .hero-notes {
+      margin: 0;
+      padding: 0.25rem 0;
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .hero-notes div { display: grid; gap: 0.15rem; }
+
+    .hero-notes dt {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .hero-notes dd {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .section { padding: 5rem 0; }
+
+    .section h2 {
+      margin: 0 0 1.5rem;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .paper { background: var(--paper); }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(16rem, 0.9fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .about-grid p { margin: 0 0 1rem; color: var(--muted); }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      padding: 1.35rem 1.4rem 1.2rem;
+    }
+
+    .paper .panel { background: var(--white); }
+
+    .panel h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chips li {
+      background: var(--paper);
+      color: var(--navy);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--navy);
+      border-radius: 0.85rem;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .when {
+      margin: 0;
+      color: var(--navy-mid);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .timeline h3 {
+      margin: 0.3rem 0 0.45rem;
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+
+    .timeline p,
+    .project p { margin: 0; color: var(--muted); }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      padding: 1.5rem 1.4rem 1.35rem;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .project h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .tools {
+      margin-top: auto;
+      color: var(--navy);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .contact {
+      background: var(--navy);
+      color: var(--white);
+      min-height: calc(100vh - var(--header));
+      min-height: calc(100svh - var(--header));
+    }
+
+    .contact h2,
+    .contact .eyebrow { color: var(--white); }
+
+    .contact .eyebrow { color: rgba(255, 255, 255, 0.72); }
+
+    .contact-copy p { margin: 0 0 1rem; color: rgba(255, 255, 255, 0.86); }
+
+    .contact a {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    form {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    label {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.8rem;
+      font: inherit;
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    input:focus-visible,
+    textarea:focus-visible,
+    .nav-toggle:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #8eb4e8;
+      outline-offset: 2px;
+    }
+
+    textarea { min-height: 8rem; resize: vertical; }
+
+    button[type="submit"] {
+      justify-self: start;
+      border: 0;
+      background: var(--navy);
+      color: var(--white);
+      font: inherit;
+      font-weight: 700;
+      padding: 0.8rem 1.15rem;
+      border-radius: 0.55rem;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover { background: var(--navy-mid); }
+
+    .form-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .site-footer {
+      background: #071525;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 1.25rem 0 1.5rem;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner,
+      .about-grid,
+      .contact-grid,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner { padding: 3.25rem 0 2.75rem; gap: 2rem; }
+
+      .section { padding: 3.25rem 0; }
+
+      .hero-notes { padding-top: 0.25rem; border-top: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-toggle { display: inline-flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+        padding: 0.35rem 1.25rem 0.6rem;
+        box-shadow: 0 12px 24px rgba(11, 31, 58, 0.08);
+      }
+
+      .nav-links.is-open { display: flex; }
+
+      .nav-links a {
+        padding: 0.75rem 0.2rem;
+        border-bottom: 1px solid var(--paper);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .wrap,
+      .header-inner { width: calc(100% - 1.5rem); }
+
+      .nav-links { padding-left: 0.75rem; padding-right: 0.75rem; }
+
+      .brand { font-size: 0.95rem; }
+
+      h1 { font-size: 2.35rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home">Inaaya Zubaria</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav id="site-nav" class="nav-links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">Data Science student</p>
+          <h1>Inaaya Zubaria</h1>
+          <p class="lede">I study how data becomes a decision — statistics, Python, and short reports people can actually use.</p>
+          <a class="btn" href="#experience">View My Experience</a>
+        </div>
+        <dl class="hero-notes">
+          <div>
+            <dt>Focus</dt>
+            <dd>Exploratory analysis and clear visuals</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Python, pandas, SQL, statistics</dd>
+          </div>
+          <div>
+            <dt>Looking for</dt>
+            <dd>Course projects and research help</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Learning to make data useful</h2>
+          <p>I am a Data Science student building the habit of a full analysis: ask a narrow question, clean the file, check the shape of the data, and write the finding in plain language.</p>
+          <p>Coursework is where I practice that loop. I care most about projects with a real reader — a class, a student group, or a campus office — because the chart has to change what someone does next.</p>
+        </div>
+        <aside class="panel">
+          <h3>Coursework</h3>
+          <ul class="chips">
+            <li>Introduction to Data Science</li>
+            <li>Probability and Statistics</li>
+            <li>Python for Data Analysis</li>
+            <li>Linear Algebra</li>
+            <li>Databases and SQL</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section paper" id="experience">
+      <div class="wrap">
+        <p class="eyebrow">Experience</p>
+        <h2>Practice, in and out of class</h2>
+        <ol class="timeline">
+          <li>
+            <p class="when">2025 — Present</p>
+            <h3>Course projects, Data Science program</h3>
+            <p>Weekly analyses on course and public datasets. I clean tables with pandas, look at distributions before any model, and turn each assignment into a one-page finding.</p>
+          </li>
+          <li>
+            <p class="when">2025</p>
+            <h3>Peer analyst, campus survey project</h3>
+            <p>Worked with classmates on a student-services questionnaire. We grouped open responses by theme and paired them with simple counts so the class could see which issues came up most.</p>
+          </li>
+          <li>
+            <p class="when">2024</p>
+            <h3>Volunteer analyst, student organization</h3>
+            <p>Tracked event attendance in a shared spreadsheet and built a small chart pack the officers used when planning the next semester’s events.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <p class="eyebrow">Projects</p>
+        <h2>Two analyses I can walk through</h2>
+        <div class="projects">
+          <article class="project">
+            <h3>Housing preferences survey</h3>
+            <p>A class project on where students want to live and which amenities they rank first. I cleaned the response file, compared rankings by class year, and kept the story to three charts on one slide.</p>
+            <p class="tools">Python · pandas · matplotlib</p>
+          </article>
+          <article class="project">
+            <h3>Bike-share commute hours</h3>
+            <p>Using a public trip dataset, I compared weekday morning rides with weekend patterns. The brief showed which hours carry commuters and which stations empty out first.</p>
+            <p class="tools">Python · pandas · seaborn</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Say hello</h2>
+          <p>I am glad to talk about class projects, a dataset you are stuck on, or research help. The form opens your email app with the note filled in.</p>
+          <p>Email <a href="mailto:inaaya@example.com">inaaya@example.com</a></p>
+        </div>
+        <form class="panel" id="contact-form" action="mailto:inaaya@example.com" method="post" enctype="text/plain">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>
+            Message
+            <textarea name="message" required></textarea>
+          </label>
+          <button type="submit">Send message</button>
+          <p class="form-note" id="form-note" role="status">Messages are addressed to inaaya@example.com.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Inaaya Zubaria · Data Science student</div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var nav = document.getElementById("site-nav");
+
+      function closeNav() {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      }
+
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      });
+
+      nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeNav);
+      });
+
+      var form = document.getElementById("contact-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var data = new FormData(form);
+        var name = String(data.get("name") || "").trim();
+        var email = String(data.get("email") || "").trim();
+        var message = String(data.get("message") || "").trim();
+        var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message;
+        var href = "mailto:inaaya@example.com?subject=" +
+          encodeURIComponent("Portfolio note from " + name) +
+          "&body=" + encodeURIComponent(body);
+        var note = document.getElementById("form-note");
+        note.textContent = "Opening your email app. If nothing opens, write to inaaya@example.com.";
+        window.location.href = href;
+      });
+    })();
+  </script>
+</body>
+</html>
